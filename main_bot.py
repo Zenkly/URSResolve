@@ -8,7 +8,7 @@ from aicap.extractor import Extractor
 from aicap.vectorstore import Vectorstore
 from functools import partial
 
-ruta_carpeta = './datatxt'
+ruta_carpeta = './datatxt/Licenciaturas-Carreras/'
 
 # Llamada a la función para leer los archivos
 documentos = Extractor(ruta_carpeta)

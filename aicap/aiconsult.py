@@ -11,6 +11,7 @@ class AiConsult:
 
         self.vectorstore = vectorstore                                
         self.chat_history = []
+        self.current_conversation = []
         historyDB.crear_tabla_si_no_existe()
 
           
@@ -22,7 +23,7 @@ class AiConsult:
         ### Context
         Eres un chatbot inteligente, de nombre URCSolve de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
         Siempre eres amable y políticamente correcto. Contestas basado siempre en el contexto. A menos que se indique lo contrario, tus respuestas priorizan información sobre casos de licenciatura.
-        Si la respuesta no está contenida en el contexto respondes educadamente que no conoces la respuesta.
+        Si la respuesta no está contenida explicitamente en los documentos respondes educadamente que no conoces la respuesta. If documents do not contains answer, then reply "No conozco la respuesta a tu pregunta".
         """
         if message == "":
             return "Estoy aquí para ayudarte"
@@ -66,20 +67,20 @@ class AiConsult:
 
         answer = response.text
 
-        # if citations:
-        #     print("\n\nCITATIONS:")
-        #     for citation in citations:
-        #         print(citation)
+        if citations:
+            print("\n\nCITATIONS:")
+            for citation in citations:
+                print(citation)
 
-        #     print("\nDOCUMENTS:")
-        #     for document in cited_documents:
-        #         print(document)
+            print("\nDOCUMENTS:")
+            for document in cited_documents:
+                print(document)
 
         user_message = {"role": "USER", "text":message}      
         bot_message = {"role": "CHATBOT", "text": answer}  
-        self.chat_history.append(user_message)
-        self.chat_history.append(bot_message)
-        historyDB.guardar_arreglo(user,self.chat_history)
+        self.current_conversation.append(user_message)
+        self.current_conversation.append(bot_message)
+        historyDB.guardar_arreglo(user,self.current_conversation)
         
         print(answer, end="")
         return answer

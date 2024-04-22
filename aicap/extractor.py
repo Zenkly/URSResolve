@@ -85,5 +85,14 @@ class Extractor:
                             'seccion': segmento['seccion'] + ": " + 'Sección '+ articulo,
                             'contenido': contenido.strip()
                         })
+            else:
+                print(titulo)
+                for segmento in lista_segmentos:       
+                    print(titulo)
+                    fragmentar_por_articulo.append({
+                        'titulo' : titulo,
+                        'seccion': segmento['seccion'],
+                        'contenido': segmento['contenido'],
+                    })
         self.fragmentos = fragmentar_por_articulo
         return fragmentar_por_articulo
