@@ -10,8 +10,8 @@ class AiCap:
         
         try:
             response = consultor.consult(update.message.from_user.id,update.message.text)
-            print("OK AICAP")
-            print(response)
+            #print("OK AICAP")
+            #print(response)
             await context.bot.send_message(chat_id=update.effective_chat.id, text=response)
         except Exception as e:
             print("Ocurrio un error:",type(e).__name__)

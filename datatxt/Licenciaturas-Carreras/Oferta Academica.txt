@@ -1,304 +1,304 @@
-***Licenciaturas del modelo Híbrido y Dual***
+***Introducción***
+***Modalidad: Licenciaturas del modelo Híbrido y Dual***
 
-Licenciatura en Ciencias Ambientales para Zonas Urbanas 	
+---Licenciatura en Ciencias Ambientales para Zonas Urbanas---
 No. de registro: 128311
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Ciencias de Datos para Negocios 	
+---Licenciatura en Ciencias de Datos para Negocios---
 No. de registro: 669348
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Contaduría y Finanzas 	
+---Licenciatura en Contaduría y Finanzas---
 No. de registro: 6621326
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Derecho y Criminología 	
+---Licenciatura en Derecho y Criminología---
 No. de registro: 612396
 Folio SIREP: 3090161
 Clave Inst. 090847
 
-Licenciatura en Urbanismo y Desarrollo Metropolitano 	
+---Licenciatura en Urbanismo y Desarrollo Metropolitano---
 No. de registro: 570316
 Folio SIREP: 3090622
 Clave Inst. 090847
 
-Licenciatura en Derecho y Seguridad Ciudadana 	
+---Licenciatura en Derecho y Seguridad Ciudadana---
 No. de registro: 670318
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Humanidades y Narrativas Multimedia 	
+---Licenciatura en Humanidades y Narrativas Multimedia---
 No. de registro: 273321
 Folio SIREP: 3090632
 Clave Inst. 090847
 
-Licenciatura en Economía y Desarrollo Sostenible 	No. de registro: 676301
+---Licenciatura en Economía y Desarrollo Sostenible---
+No. de registro: 676301
 Folio SIREP: 3112655
 Clave Inst. 090847
 
-Licenciatura en Turismo 	
+---Licenciatura en Turismo---
 No. de registro: 615301
 Folio SIREP: 3090605
 Clave Inst. 090847
 
-Licenciatura en Psicología 	
+---Licenciatura en Psicología---
 No. de registro: 231301
 Folio SIREP: 3090478
 Clave Inst. 090847
 
-Licenciatura en Relaciones Internacionales 	
+---Licenciatura en Relaciones Internacionales---
 No. de registro: 611302
 Folio SIREP: 3090589
 Clave Inst. 090847
 
-Licenciatura en Ciencias de la Comunicación 	
+---Licenciatura en Ciencias de la Comunicación---
 No. de registro: 611310
 Folio SIREP: 3090427
 Clave Inst. 090847
 
-Licenciatura en Ingeniería en Control y Automatización 	
+---Licenciatura en Ingeniería en Control y Automatización---
 No. de registro: 507313
 Folio SIREP: 3090462
 Clave Inst. 090847
 
-Licenciatura en Filosofía e Historia 	
+---Licenciatura en Filosofía e Historia---
 No. de registro: 211355
 Folio SIREP: 3233388
 Clave Inst. 090847
 
-Licenciatura en Derecho y Criminología 	
+---Licenciatura en Derecho y Criminología---
 No. de registro: 612396
 Folio SIREP: 3090161
 Clave Inst. 090847
 
-Licenciatura en Desarrollo Comunitario para Zonas Metropolitanas 	
+---Licenciatura en Desarrollo Comunitario para Zonas Metropolitanas---
 No. de registro: 130304
 Folio SIREP: 2837743
 Clave Inst. 090847
 
 
-***Licenciaturas Presenciales Híbridas***
-Lista de carreras-licenciaturas:
+***Modalidad: Licenciaturas Presenciales Híbridas***
 
+---Licenciatura en Ciencias Ambientales para Zonas Urbanas---
 
-Licenciatura en Ciencias Ambientales para Zonas Urbanas 
+---Licenciatura en Ciencias de Datos---
 
-Licenciatura en Ciencias de Datos 	
-
-Licenciatura en Ciencias de Datos para Negocios 	
+---Licenciatura en Ciencias de Datos para Negocios---
 No. de registro: 669348
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Contaduría y Finanzas 	
+---Licenciatura en Contaduría y Finanzas---
 No. de registro: 6621326
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Derecho y Criminología 	
+---Licenciatura en Derecho y Criminología---
 No. de registro: 612396
 Folio SIREP: 3090161
 Clave Inst. 090847
 
-Licenciatura en Urbanismo y Desarrollo Metropolitano 	
+---Licenciatura en Urbanismo y Desarrollo Metropolitano---
 No. de registro: 570316
 Folio SIREP: 3090622
 Clave Inst. 090847
 
-Licenciatura en Derecho y Seguridad Ciudadana 	
+---Licenciatura en Derecho y Seguridad Ciudadana---
 No. de registro: 670318
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Humanidades y Narrativas Multimedia 	
+---Licenciatura en Humanidades y Narrativas Multimedia---
 No. de registro: 273321
 Folio SIREP: 3090632
 Clave Inst. 090847
 
-Licenciatura en Economía y Desarrollo Sostenible 	No. de registro: 676301
+---Licenciatura en Economía y Desarrollo Sostenible---
+No. de registro: 676301
 Folio SIREP: 3112655
 Clave Inst. 090847
 
-Licenciatura en Turismo 	
+---Licenciatura en Turismo---
 No. de registro: 615301
 Folio SIREP: 3090605
 Clave Inst. 090847
 
-Licenciatura en Psicología 	
+---Licenciatura en Psicología---
 No. de registro: 231301
 Folio SIREP: 3090478
 Clave Inst. 090847
 
-Licenciatura en Relaciones Internacionales 	
+---Licenciatura en Relaciones Internacionales---
 No. de registro: 611302
 Folio SIREP: 3090589
 Clave Inst. 090847
 
-Licenciatura en Ciencias de la Comunicación 	
+---Licenciatura en Ciencias de la Comunicación---
 No. de registro: 611310
 Folio SIREP: 3090427
 Clave Inst. 090847
 
-Licenciatura en Ciencias Ambientales 	
+---Licenciatura en Ciencias Ambientales---
 No. de registro: 128311
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Ingeniería en Control y Automatización 	
+---Licenciatura en Ingeniería en Control y Automatización---
 No. de registro: 507313
 Folio SIREP: 3090462
 Clave Inst. 090847
 
-Licenciatura en Filosofía e Historia 	
+---Licenciatura en Filosofía e Historia---
 No. de registro: 211355
 Folio SIREP: 3233388
 Clave Inst. 090847
 
-Licenciatura en Derecho y Criminología 	
+---Licenciatura en Derecho y Criminología---
 No. de registro: 612396
 Folio SIREP: 3090161
 Clave Inst. 090847
 
-Licenciatura en Desarrollo Comunitario para Zonas Metropolitanas 	
+---Licenciatura en Desarrollo Comunitario para Zonas Metropolitanas---
 No. de registro: 130304
 Folio SIREP: 2837743
 Clave Inst. 090847
 
 
-***Licenciaturas a Distancia Híbridas***
-Lista de carreras-licenciaturas:
+***Modalidad: Licenciaturas a Distancia Híbridas***
 
-Licenciatura en Administración y Comercio 	
+---Licenciatura en Administración y Comercio---
 No. de registro: 625316
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Tecnologías de la Información y la Comunicación 	
+---Licenciatura en Tecnologías de la Información y la Comunicación---
 No. de registro: 669334
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Mercadotecnia y Ventas 	
+---Licenciatura en Mercadotecnia y Ventas---
 No. de registro: 622389
 Folio SIREP: 2837743
 Clave Inst. 090847
 
-Licenciatura en Relaciones Internacionales 	
+---Licenciatura en Relaciones Internacionales---
 No. de registro: 611302
 Folio SIREP: 3231731
 Clave Inst. 090847
 
-Licenciatura en Psicología 	
+---Licenciatura en Psicología---
 No. de registro: 231301
 Folio SIREP: 3231730
 Clave Inst. 090847
 
-Licenciatura en Derecho y Criminología 	
+---Licenciatura en Derecho y Criminología---
 No. de registro: 612396
 Folio SIREP: 3231717
 Clave Inst. 090847
 
-Licenciatura en Humanidades y Narrativas Multimedia 	
+---Licenciatura en Humanidades y Narrativas Multimedia---
 No. de registro: 273321
 Folio SIREP: 3231720
 Clave Inst. 090847
 
-Licenciatura en Contaduría y Finanzas 	
+---Licenciatura en Contaduría y Finanzas---
 No. de registro: 621326
 Folio SIREP: 3231729
 Clave Inst. 090847
 
 ***Unidad de Posgrado***
 
-Especialidad en Atención Educativa a la Primera Infancia 	
+---Especialidad en Atención Educativa a la Primera Infancia---
 No. de registro: 295708
 Folio SIREP: 3231743
 Clave Inst. 090847
 
-Especialidad en Prácticas de Enseñanza Steam 	
+---Especialidad en Prácticas de Enseñanza Steam---
 No. de registro: 688718
 Folio SIREP: 3231741
 Clave Inst. 090847
 
-Especialidad en Interpretación y Traducción de Lenguas Indígenas en los Servicios Públicos 	
+---Especialidad en Interpretación y Traducción de Lenguas Indígenas en los Servicios Públicos---
 No. de registro: 686705
 Folio SIREP: 3240182
 Clave Inst. 090847
 
-Especialidad en Estrategias Pedagógicas para la Educación Intercultural 	
+---Especialidad en Estrategias Pedagógicas para la Educación Intercultural---
 No. de registro: 292714
 Folio SIREP: 3114558
 Clave Inst. 090847
 
-Especialidad en Intervención Innovadora del Docente en Situaciones Emergentes 	
+---Especialidad en Intervención Innovadora del Docente en Situaciones Emergentes---
 No. de registro: 292715
 Folio SIREP: 3114542
 Clave Inst. 090847
 
-Maestría en Ambientes, Sistemas y Gestión en la Educación Multimodal 	
+---Maestría en Ambientes, Sistemas y Gestión en la Educación Multimodal---
 No. de registro: 292537
 Folio SIREP: 3110949
 Clave Inst. 090847
 
-Maestría en Cambio Climático y Biodiversidad 	
+---Maestría en Cambio Climático y Biodiversidad---
 No. de registro: 128545
 Folio SIREP: 3110945
 Clave Inst. 090847
 
-Maestría en Derecho Indígena 	
+---Maestría en Derecho Indígena---
 No. de registro: 602585
 Folio SIREP: 3111412
 Clave Inst. 090847
 
-Maestría en Políticas Públicas e Interculturalidad 	
+---Maestría en Políticas Públicas e Interculturalidad---
 No. de registro: 683514
 Folio SIREP: 3205015
 Clave Inst. 090847
 
-Maestría en Territorio y Memoria Histórica 	
+---Maestría en Territorio y Memoria Histórica---
 No. de registro: 261562
 Folio SIREP: 3205024
 Clave Inst. 090847
 
-Maestría en Intervención Docente Innovadora en la Enseñanza Media Superior 	
+---Maestría en Intervención Docente Innovadora en la Enseñanza Media Superior---
 No. de registro: 293523
 Folio SIREP: 3231739
 Clave Inst. 090847
 
-Maestría en Seguridad y Soberanía Alimentarias 	
+---Maestría en Seguridad y Soberanía Alimentarias---
 No. de registro: 678595
 Folio SIREP: 3232578
 Clave Inst. 090847
 
-Doctorado en Ambientes y Sistemas Educativos Multimodales 	
+---Doctorado en Ambientes y Sistemas Educativos Multimodales---
 No. de registro: 292612
 Folio SIREP: 3110928
 Clave Inst. 090847
 
-Doctorado en Ciencias de la Sustentabilidad 	
+---Doctorado en Ciencias de la Sustentabilidad---
 No. de registro: 644619
 Folio SIREP: 3111415
 Clave Inst. 09084
 
-Doctorado en Investigación Social desde la Complejidad 	
+---Doctorado en Investigación Social desde la Complejidad---
 No. de registro: 686609
 Folio SIREP: 3231744
 Clave Inst. 09084
 
-Técnico Superior Universitario en Administración 	
+---Técnico Superior Universitario en Administración---
 No. de registro: 621403
 Folio SIREP: 2847744
 Clave Inst. 090847
 
-Técnico Superior Universitario en Mercadotecnia
+---Técnico Superior Universitario en Mercadotecnia---
 No. de registro: 645402
 Folio SIREP: 4847744
 Clave Inst. 09084
 
-Técnico Superior Universitario en Tecnologías Computacionales
+---Técnico Superior Universitario en Tecnologías Computacionales---
 No. de registro: 571413
 Folio SIREP: 7847744
 Clave Inst. 09084 

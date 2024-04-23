@@ -86,13 +86,30 @@ class Extractor:
                             'contenido': contenido.strip()
                         })
             else:
-                print(titulo)
-                for segmento in lista_segmentos:       
-                    print(titulo)
-                    fragmentar_por_articulo.append({
-                        'titulo' : titulo,
-                        'seccion': segmento['seccion'],
-                        'contenido': segmento['contenido'],
-                    })
+                patron_art=r'-{3}(.+?)-{3}(.*?)(?=-{3}(.+?)-{3}|$)'
+                for segmento in lista_segmentos:
+                    coincidencias = re.findall(patron_art, segmento['contenido'], re.DOTALL)
+                    if len(coincidencias) == 0:        
+                        fragmentar_por_articulo.append({
+                            'titulo' : titulo,
+                            'seccion': segmento['seccion'],
+                            'contenido': segmento['contenido'],
+                        })
+                        # print({
+                        #     'titulo' : titulo,
+                        #     'seccion': segmento['seccion'],
+                        #     'contenido': segmento['contenido'],
+                        # })
+                    for articulo, contenido,_ in coincidencias:                        
+                        fragmentar_por_articulo.append({
+                            'titulo' : titulo,
+                            'seccion': segmento['seccion'] + ": " + 'Sección '+ articulo,
+                            'contenido': contenido.strip()
+                        })
+                        # print({
+                        #         'titulo' : titulo,
+                        #         'seccion': segmento['seccion'] + ": " + 'Sección '+ articulo,
+                        #         'contenido': contenido.strip()
+                        #     })
         self.fragmentos = fragmentar_por_articulo
         return fragmentar_por_articulo

@@ -36,17 +36,17 @@ class historyDB():
         # Obtener el arreglo de la tabla
         cursor.execute('SELECT arreglo FROM chat_history WHERE user=? ORDER BY id DESC LIMIT 5',(user,))
         resultado = reversed(cursor.fetchall())
-        print(resultado)
+        #print(resultado)
         conn.close()
 
         historial_db = []
         if resultado:
             for entrada in resultado:
                 # Convertir el JSON de la base de datos de nuevo a un arreglo de Python
-                print("entrada")
-                print(entrada)
+                #print("entrada")
+                #print(entrada)
                 historial_db.extend(json.loads(entrada[0]))
-                print("historial")
-                print(historial_db)
+                #print("historial")
+                #print(historial_db)
         
         return historial_db

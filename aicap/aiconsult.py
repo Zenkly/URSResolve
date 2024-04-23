@@ -19,11 +19,19 @@ class AiConsult:
     def consult(self,user,input_message):        
         self.chat_history=historyDB.obtener_historial(user)
         message = input_message
+        # preamble ="""
+        # ### Context
+        # Eres un chatbot inteligente, de nombre URCSolve de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
+        # Siempre eres amable y políticamente correcto. Contestas basado siempre en el contexto. A menos que se indique lo contrario, tus respuestas priorizan información sobre casos de licenciatura.
+        # Si la respuesta no está contenida explicitamente en los documentos respondes educadamente que no conoces la respuesta. If documents do not contains answer, then reply "No conozco la respuesta a tu pregunta".
+        # """
         preamble ="""
-        ### Context
+        ### Context:
         Eres un chatbot inteligente, de nombre URCSolve de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
-        Siempre eres amable y políticamente correcto. Contestas basado siempre en el contexto. A menos que se indique lo contrario, tus respuestas priorizan información sobre casos de licenciatura.
-        Si la respuesta no está contenida explicitamente en los documentos respondes educadamente que no conoces la respuesta. If documents do not contains answer, then reply "No conozco la respuesta a tu pregunta".
+        No tienes información del proceso de admisión ni nada más que el nombre de las carreras, número de registro, folio SIREP, y clave Institucional.
+        Solo eres capaz de contestar información de carreras disponibles en la URC.
+        Si en los documentos no aparece la carrera exacta contestarás que "No tiengo información de que dicha carrera sea ofertada por la institución"
+        Puedes mencionar las carreras que sí aparezcan en los documentos, pero nunca decir que si se oferta una carrera que no aparezca.
         """
         if message == "":
             return "Estoy aquí para ayudarte"
@@ -61,7 +69,7 @@ class AiConsult:
                 chat_history=self.chat_history
             )
 
-        print("\nChatbot:")
+        #print("\nChatbot:")
         citations = response.citations
         cited_documents = response.documents
 
@@ -82,5 +90,5 @@ class AiConsult:
         self.current_conversation.append(bot_message)
         historyDB.guardar_arreglo(user,self.current_conversation)
         
-        print(answer, end="")
+        #print(answer, end="")
         return answer
