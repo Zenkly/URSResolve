@@ -1,5 +1,5 @@
 
-from telegram import Update
+from telegram import Update, ForceReply
 from telegram.ext import ContextTypes
 from telegram.constants import ChatAction
 from aicap.aiconsult import AiConsult
@@ -39,7 +39,7 @@ class AiCap:
             response = "¡Hola! Antes de poder ayudarte debes elegir entre uno de los siguientes temas:\n"
             for key in themes:
                 response = response + f"● {key}"
-            await context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+            await context.bot.send_message(chat_id=update.effective_chat.id, text=response,reply_markup=ForceReply())
             theme = list(themes.keys())[0]
             historyDB.set_theme(update.message.from_user.id,theme)
             
