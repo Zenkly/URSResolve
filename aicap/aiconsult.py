@@ -99,17 +99,17 @@ class AiConsult:
         return answer
     
     def query_OpenAillm(system_message,prompt, history,model="gpt-3.5-turbo"):
-        print("Querying...")
+        #print("Querying...")
         history.insert(0,{"role": "system", "content": system_message})
         history.append({"role": "user", "content": prompt})
-        print(history)
+        #print(history)
         completions = client.chat.completions.create(        
         model="gpt-3.5-turbo",
             messages=history,
             temperature=0.0,
         )
-        print("Finish...")
-        print(completions.choices[0].message.content)
+        #print("Finish...")
+        #print(completions.choices[0].message.content)
         return completions.choices[0].message.content
 
     def consultOpenAi(self,user,input_message):        

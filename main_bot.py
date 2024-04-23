@@ -1,21 +1,19 @@
+# Telegram handler
 from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler
 # Get access to OS commands
 import os
 # Print formated logs
 import logging
-
-from aicap.extractor import Extractor
-from aicap.vectorstore import Vectorstore
+# Adds arguments to Handlers
 from functools import partial
+# Get dir names
+from utils.utils import get_themes
 
-ruta_carpeta = './datatxt/Licenciaturas-Carreras/'
+ruta_carpeta = './datatxt/'
 
-# Llamada a la función para leer los archivos
-documentos = Extractor(ruta_carpeta)
-documentos.leer_archivos_en_carpeta()
-fragmentar_por_articulo = documentos.fragmentar_contenido()
-
-vectorstore = Vectorstore(fragmentar_por_articulo)
+# Themes must be defined here to avoid defining it again each time a message is handled
+themes = get_themes(ruta_carpeta)
+print(themes)
 
 class MyBot:
     # Constructor
@@ -56,7 +54,7 @@ class MyBot:
         ai_class = getattr(ai_module,"AiCap")
         ai_handler = getattr(ai_class,"execute")
         # Handler with vectorstore as aditional argument
-        ai_handler_with_vec = partial(ai_handler, vectorstore=vectorstore)
+        ai_handler_with_vec = partial(ai_handler, vectorstore=themes[0]["vectorstore"])
         self.application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND),ai_handler_with_vec))
         
 
