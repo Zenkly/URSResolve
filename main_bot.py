@@ -48,7 +48,7 @@ class MyBot:
                 command_name = module_name.lower().replace("command","")
                 if command_name == "consulta":
                     # Add command to bot                
-                    ai_handler_with_vec = partial(command_handler, vectorstore=themes[0]["vectorstore"])
+                    ai_handler_with_vec = partial(command_handler, themes=themes)
                     self.application.add_handler(CommandHandler(command_name,ai_handler_with_vec))
                 else:
                     # Add command to bot                
@@ -59,7 +59,7 @@ class MyBot:
         ai_class = getattr(ai_module,"AiCap")
         ai_handler = getattr(ai_class,"execute")
         # Handler with vectorstore as aditional argument
-        ai_handler_with_vec = partial(ai_handler, vectorstore=themes[0]["vectorstore"])
+        ai_handler_with_vec = partial(ai_handler, themes=themes)
         self.application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND),ai_handler_with_vec))
         
 

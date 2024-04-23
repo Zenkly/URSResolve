@@ -5,7 +5,7 @@ from aicap.AiCap import AiCap
 from functools import partial
 
 class ConsultaCommand:
-    async def execute(update: Update, context: ContextTypes.DEFAULT_TYPE,vectorstore):
+    async def execute(update: Update, context: ContextTypes.DEFAULT_TYPE,themes):
         print(update)
         print(context)
-        await AiCap.execute(update,context,vectorstore)
+        await AiCap.execute(update,context,themes)

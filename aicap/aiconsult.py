@@ -17,7 +17,7 @@ class AiConsult:
         self.vectorstore = vectorstore                                
         self.chat_history = []
         self.current_conversation = []
-        historyDB.crear_tabla_si_no_existe()
+        historyDB.crear_tablas_si_no_existen()
 
           
     

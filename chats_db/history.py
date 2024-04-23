@@ -1,20 +1,73 @@
 import sqlite3
 import json
+from datetime import datetime,timezone
 
 class historyDB():
-    def crear_tabla_si_no_existe():
+    def crear_tablas_si_no_existen():
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()
 
-        # Crear la tabla si no existe
+        # Create tables if not exist previously
         cursor.execute('''CREATE TABLE IF NOT EXISTS chat_history (
                             id INTEGER PRIMARY KEY,
                             user TEXT,
                             arreglo TEXT
                         )''')
         
+        cursor.execute('''CREATE TABLE IF NOT EXISTS chat_theme (
+                            user TEXT PRIMARY KEY,
+                            theme TEXT,
+                            time INTEGER
+                        )''')
+
         conn.commit()
         conn.close()
+
+    def get_theme(user):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()        
+
+        cursor.execute('SELECT theme,time FROM chat_theme WHERE user = ?', (user,))
+
+        user_data = cursor.fetchone()
+
+        
+
+        if user_data: 
+            theme,time = user_data
+            print(f"El tema del usuario {user}, es {theme} declarado en {time}")
+            now = int(datetime.now().timestamp())
+            print(time)
+            time_diff = now - time
+            print(time_diff)
+            if time_diff > 300:
+                cursor.execute('DELETE FROM chat_theme WHERE user = ?',(user,))
+                print("Debes definir un nuevo tema")
+                theme = "expired"
+        else:
+            theme = None
+            print(f"Debes definir un tema antes de iniciar a preguntar")
+        
+        conn.commit()
+        conn.close()
+
+        return theme
+    
+
+    def set_theme(user,theme):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT COUNT(*) FROM chat_theme WHERE user = ?', (user,))
+        user_exists = cursor.fetchone()[0] > 0
+        now = int(datetime.now().timestamp())
+        print(now)
+        if user_exists:
+            cursor.execute('UPDATE chat_theme SET theme = ?, time ? WHERE user = ?', (theme, now, user))
+        else:
+            cursor.execute('INSERT INTO chat_theme (user,theme,time) VALUES (?, ?, ?)',(user,theme,now))
+        conn.commit()
+        conn.close()
+
 
     def guardar_arreglo(user,arreglo):
         conn = sqlite3.connect('./chats_db/datos.db')

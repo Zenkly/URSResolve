@@ -17,7 +17,7 @@ def get_dir_names(path):
 def get_themes(path):
 
     directories = get_dir_names(path)
-    themes = []
+    themes = {}
     for dir in directories:
     # Read and process files
         documentos = Extractor(path+"/"+dir+"/")
@@ -25,8 +25,5 @@ def get_themes(path):
         fragmentar_por_articulo = documentos.fragmentar_contenido()
         
         vectorstore = Vectorstore(fragmentar_por_articulo)
-        themes.append({
-            "theme":dir,
-            "vectorstore":vectorstore
-            })
+        themes[dir]=vectorstore
     return themes
