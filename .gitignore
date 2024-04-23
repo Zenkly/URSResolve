@@ -2,3 +2,5 @@ secrets
 requirements
 /chats_db/datos.db
 __pycache__/
+data/
+*/__pycache__/
