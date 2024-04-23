@@ -29,7 +29,7 @@ class historyDB():
         conn.commit()
         conn.close()
 
-    def obtener_historial(user):
+    def obtener_historial(user,openAi=False):
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()
 
@@ -45,7 +45,18 @@ class historyDB():
                 # Convertir el JSON de la base de datos de nuevo a un arreglo de Python
                 #print("entrada")
                 #print(entrada)
-                historial_db.extend(json.loads(entrada[0]))
+                if not openAi:
+                    historial_db.extend(json.loads(entrada[0]))
+                else:
+                    message_array = json.loads(entrada[0])
+                    for msg in message_array:                                
+                        formated_message = {}
+                        if msg["role"]=="USER":
+                            formated_message["role"]='user'
+                        else:
+                            formated_message["role"]='assistant'
+                        formated_message["content"]=msg["text"]
+                        historial_db.append(formated_message)
                 #print("historial")
                 #print(historial_db)
         
