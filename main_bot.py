@@ -46,8 +46,13 @@ class MyBot:
                 command_handler = getattr(command_class,"execute")
                 # Define command name to use
                 command_name = module_name.lower().replace("command","")
-                # Add command to bot
-                self.application.add_handler(CommandHandler(command_name,command_handler))            
+                if command_name == "consulta":
+                    # Add command to bot                
+                    ai_handler_with_vec = partial(command_handler, vectorstore=themes[0]["vectorstore"])
+                    self.application.add_handler(CommandHandler(command_name,ai_handler_with_vec))
+                else:
+                    # Add command to bot                
+                    self.application.add_handler(CommandHandler(command_name,command_handler))            
     
     def start_ai_chat(self):        
         ai_module = __import__("aicap.AiCap",fromlist=["AiCap"])

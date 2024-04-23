@@ -80,14 +80,14 @@ class AiConsult:
 
         answer = response.text
 
-        if citations:
-            print("\n\nCITATIONS:")
-            for citation in citations:
-                print(citation)
+        # if citations:
+        #     print("\n\nCITATIONS:")
+        #     for citation in citations:
+        #         print(citation)
 
-            print("\nDOCUMENTS:")
-            for document in cited_documents:
-                print(document)
+        #     print("\nDOCUMENTS:")
+        #     for document in cited_documents:
+        #         print(document)
 
         user_message = {"role": "USER", "text":message}      
         bot_message = {"role": "CHATBOT", "text": answer}  
@@ -146,7 +146,7 @@ class AiConsult:
             print(f"User: {message}")
 
 
-        print("Recuperando información...", end="")            
+        #print("Recuperando información...", end="")            
 
         documents=self.vectorstore.retrieve(input_message)
 
@@ -159,9 +159,9 @@ class AiConsult:
         
 
         final_prompt = template_rag.format(context=context)
-        print(type(final_prompt))
-        print("Querying...")        
-        print(self.chat_history)
+        #print(type(final_prompt))
+        #print("Querying...")        
+        #print(self.chat_history)
         answer = AiConsult.query_OpenAillm(final_prompt,input_message,self.chat_history)
 
         user_message = {"role": "USER", "text":message}      
