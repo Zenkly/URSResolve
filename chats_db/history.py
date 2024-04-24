@@ -68,7 +68,7 @@ class historyDB():
         conn.commit()
         conn.close()
 
-    def uset_theme(user):
+    def unset_theme(user):
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()
         cursor.execute('DELETE FROM chat_theme WHERE user = ?',(user,))

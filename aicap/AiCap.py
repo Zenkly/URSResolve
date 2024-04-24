@@ -7,7 +7,7 @@ from chats_db.history import historyDB
 
 class AiCap:    
     async def execute(update: Update, context: ContextTypes.DEFAULT_TYPE,themes):
-        if not (update.effective_chat.type == "private") or not (update.effective_chat.type == "group"):
+        if (update.effective_chat.type != "private") and (update.effective_chat.type != "group"):
             return
         historyDB.crear_tablas_si_no_existen()
         #print(update.message)
@@ -29,22 +29,20 @@ class AiCap:
                 if theme in themes.keys():
                     consultor = AiConsult(vectorstore=themes[theme])  
                 else:
-                    await context.bot.send_message(chat_id=update.effective_chat.id, text="Lo siento parece que la base ha cambiar. Vuelve a elegir el tema.")
-                    historyDB.uset_theme(update.message.from_user.id)
+                    await context.bot.send_message(chat_id=update.effective_chat.id, text="Lo siento parece que la base ha cambiado. Vuelve a elegir el tema.")
+                    historyDB.unset_theme(update.message.from_user.id)
                     return
                 try:
+
                     if(update.effective_chat.type == "private"):                
-                        #response = consultor.consult(update.message.from_user.id,update.message.text)
-                        response = consultor.consultOpenAi(update.message.from_user.id,update.message.text)
-                        #print("OK AICAP")
-                        #print(response)
-                        await context.bot.send_chat_action(chat_id=update.effective_chat.id,action=ChatAction.TYPING)
-                        await context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+                        message = update.message.text
                     elif(update.effective_chat.type == "group"):                            
                         message = update.message.text.replace("/consulta","")
-                        response = consultor.consultOpenAi(update.message.from_user.id,message)
-                        await context.bot.send_chat_action(chat_id=update.effective_chat.id,action=ChatAction.TYPING)
-                        await context.bot.send_message(chat_id=update.effective_chat.id, text=response)                
+                    keyboard = [[InlineKeyboardButton("Cambiar tema",callback_data=-1)]]
+                    reply_markup = InlineKeyboardMarkup(keyboard)
+                    response = consultor.consultOpenAi(update.message.from_user.id,message)
+                    await context.bot.send_chat_action(chat_id=update.effective_chat.id,action=ChatAction.TYPING)
+                    await context.bot.send_message(chat_id=update.effective_chat.id, text=response,reply_markup=reply_markup)                
                 except Exception as e:
                     print("Ocurrio un error:",type(e).__name__)
                     print(e)
@@ -65,12 +63,19 @@ class AiCap:
             await query.answer()
 
             themes_list = list(themes.keys())
-            if query.data.isdigit():
+            if query.data.lstrip('-').isdigit():
                 option_number = int(query.data)
+                print("Option Number:")
+                print(option_number)
                 if (option_number>=0) and (option_number < len(themes_list)):
                     theme = themes_list[option_number]                    
                     historyDB.set_theme(query.from_user.id,theme)
-            await query.edit_message_text(text=f"De acuerdo cuéntame tus dudas de {themes_list[option_number]}")
+                    await query.edit_message_text(text=f"De acuerdo cuéntame tus dudas de {themes_list[option_number]}")
+                if option_number==-1:
+                    print("Cambiando tema")
+                    historyDB.unset_theme(query.from_user.id)
+                    await context.bot.send_message(query.message.chat.id,text=f"Fue un placer ayudarte. Envía otro mensaje para iniciar otra conversación.")
+            
 
     def format_options(themes):
         themes_list = list(themes.keys())
