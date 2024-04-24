@@ -1,5 +1,5 @@
 # Telegram handler
-from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler
+from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler, CallbackQueryHandler
 # Get access to OS commands
 import os
 # Print formated logs
@@ -27,6 +27,7 @@ class MyBot:
     def start(self):
         # Start bot
         self.application.run_polling()
+        
 
     def register_commands(self):
         # Directory where the commands are stored
@@ -58,9 +59,12 @@ class MyBot:
         ai_module = __import__("aicap.AiCap",fromlist=["AiCap"])
         ai_class = getattr(ai_module,"AiCap")
         ai_handler = getattr(ai_class,"execute")
+        ai_theme_selector = getattr(ai_class,"select_theme")
         # Handler with vectorstore as aditional argument
         ai_handler_with_vec = partial(ai_handler, themes=themes)
-        self.application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND),ai_handler_with_vec))
+        ai_theme_selector_with_vec = partial(ai_theme_selector, themes=themes)
+        self.application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND) & (~filters.REPLY),ai_handler_with_vec))
+        self.application.add_handler(CallbackQueryHandler(ai_theme_selector_with_vec))
         
 
 

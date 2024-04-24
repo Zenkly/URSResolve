@@ -62,11 +62,19 @@ class historyDB():
         now = int(datetime.now().timestamp())
         print(now)
         if user_exists:
-            cursor.execute('UPDATE chat_theme SET theme = ?, time ? WHERE user = ?', (theme, now, user))
+            cursor.execute('UPDATE chat_theme SET theme = ?, time = ? WHERE user = ?', (theme, now, user))
         else:
             cursor.execute('INSERT INTO chat_theme (user,theme,time) VALUES (?, ?, ?)',(user,theme,now))
         conn.commit()
         conn.close()
+
+    def uset_theme(user):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM chat_theme WHERE user = ?',(user,))
+        conn.commit()
+        conn.close()
+
 
 
     def guardar_arreglo(user,arreglo):
