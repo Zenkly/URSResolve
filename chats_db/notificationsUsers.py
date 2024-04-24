@@ -17,7 +17,7 @@ class notificationsDB():
         conn.commit()
         conn.close()
 
-    def set_admin(user):
+    def toggle_notifications(user,value):
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()        
 
@@ -26,19 +26,63 @@ class notificationsDB():
         user_data = cursor.fetchone()
         status = 0
         if user_data: 
-            cursor.execute('UPDATE registered_users SET admin = ? WHERE user = ?', (1, user))
+            cursor.execute('UPDATE registered_users SET notifications = ? WHERE user = ?', (value, user))
         else:
             status = -1
         conn.commit()
         conn.close()
 
         return status
-    
 
+    def toggle_admin(admin,user,value):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()        
+
+        cursor.execute('SELECT admin FROM registered_users WHERE user = ?', (admin,))
+        if admin:            
+            if int(admin) == 1:
+                cursor.execute('SELECT user FROM registered_users WHERE user = ?', (user,))
+
+                user_data = cursor.fetchone()
+                status = 0
+                if user_data: 
+                    cursor.execute('UPDATE registered_users SET admin = ? WHERE user = ?', (value, user))
+                else:
+                    status = -1
+                conn.commit()
+                conn.close()
+            else:
+                status = -5
+        return status
+    
+    def unset_admin(admin,user):
+        return notificationsDB.toggle_admin(admin,user,0)
+
+    def set_admin(admin,user):
+        return notificationsDB.toggle_admin(admin,user,1)
+    
+    def unset_notifications(user):
+        return notificationsDB.toggle_notifications(user,0)
+
+    def set_notifications(user):
+        return notificationsDB.toggle_notifications(user,1)
+    
+    def get_user_data(user):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()        
+
+        cursor.execute('SELECT notifications,admin FROM registered_users WHERE user = ?', (user,))
+        user_data = cursor.fetchone()
+        if user_data:
+            notifications,admin =user_data
+            return (notifications,admin)
+        else:
+            return -1
+        
     def register_user(user):
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()
-        cursor.execute('SELECT COUNT(*) FROM chat_theme WHERE user = ?', (user,))
+        cursor.execute('SELECT COUNT(*) FROM registered_users WHERE user = ?', (user,))
         user_exists = cursor.fetchone()[0] > 0                
         status = 0
         if user_exists:            
