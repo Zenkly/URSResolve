@@ -11,16 +11,9 @@ class surveysDB():
         cursor.execute('''CREATE TABLE IF NOT EXISTS surveys (
                             id INTEGER PRIMARY KEY,
                             user INTEGER,
-                            q1 INTEGER,
-                            q2 INTEGER,
-                            q3 INTEGER,
-                            q4 INTEGER,
-                            q5 INTEGER,
-                            q6 INTEGER,
-                            q7 INTEGER,
-                            q8 INTEGER,
-                            q9 INTEGER,
-                            q10 INTEGER
+                            q1 TEXT,
+                            q2 TEXT,
+                            q3 TEXT
                         )''')
 
         conn.commit()
@@ -38,12 +31,18 @@ class surveysDB():
     def register_answer(id,question,answer):
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()        
-        cursor.execute('SELECT id FROM surveys WHERE id = ?', (id,))
-
+        id_int = int(id)
+        q_lower = question.lower()
+        cursor.execute('SELECT user FROM surveys WHERE id = ?', (id_int,))
         user_data = cursor.fetchone()
         status = 0
+        #print(type(id),question,answer)
+        print("USER_DATA")
+        print(user_data)
         if user_data: 
-            cursor.execute('UPDATE surveys SET ? = ? WHERE id = ?', (question, answer,id))
+            print(id,question,answer)
+
+            cursor.execute(f'UPDATE surveys SET {q_lower} = ? WHERE id = ?', (answer,id_int))
         else:
             status = -1
         conn.commit()

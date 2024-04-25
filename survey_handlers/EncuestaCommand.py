@@ -9,18 +9,16 @@ class EncuestaCommand:
         surveysDB.crear_tablas_si_no_existen()        
         id = surveysDB.register_user(update.message.from_user.id)        
         id_result = str(id)
-        print("NUEVA EJECUCIONS")
+        print("NUEVA EJECUCION")
         keyboard = [
             [
-                InlineKeyboardButton("A1",callback_data="Q1-"+id_result+"-A1"),
-                InlineKeyboardButton("A2",callback_data="Q1-"+id_result+"-A2"),
-                InlineKeyboardButton("A3",callback_data="Q1-"+id_result+"-A3"),
-                InlineKeyboardButton("A4",callback_data="Q1-"+id_result+"-A4"),
-                InlineKeyboardButton("A5",callback_data="Q1-"+id_result+"-A5")
+                InlineKeyboardButton("Muy útil",callback_data="Q1-"+id_result+"-A1"),
+                InlineKeyboardButton("Útil",callback_data="Q1-"+id_result+"-A2"),
+                InlineKeyboardButton("Poco útil",callback_data="Q1-"+id_result+"-A3")
             ]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)                        
 
-        await update.message.reply_text("First Question, Choose answer", reply_markup=reply_markup)
+        await update.message.reply_text("¿Qué tan útil encontraste la información proporcionada por el chatbot sobre titulación y servicio social universitario?", reply_markup=reply_markup)
 
         return ONE_ROUTE
