@@ -1,5 +1,5 @@
 # Telegram handler
-from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler, CallbackQueryHandler
+from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler, CallbackQueryHandler,ConversationHandler
 # Get access to OS commands
 import os
 # Print formated logs
@@ -8,6 +8,9 @@ import logging
 from functools import partial
 # Get dir names
 from utils.utils import get_themes
+
+from survey_handlers.EncuestaCommand import EncuestaCommand
+import survey_handlers.surveyHandlers as svh
 
 ruta_carpeta = './datatxt/'
 
@@ -18,11 +21,13 @@ print(themes)
 class MyBot:
     # Constructor
     def __init__(self, token):
+        self.ONE_ROUTE = 1
         # Build application
         self.application = ApplicationBuilder().token(token).build()
         # Invoke register_commands method
         self.register_commands()
         self.start_ai_chat()
+        self.config_survey()
 
     def start(self):
         # Start bot
@@ -64,8 +69,21 @@ class MyBot:
         ai_handler_with_vec = partial(ai_handler, themes=themes)
         ai_theme_selector_with_vec = partial(ai_theme_selector, themes=themes)
         self.application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND) & (~filters.REPLY),ai_handler_with_vec))
-        self.application.add_handler(CallbackQueryHandler(ai_theme_selector_with_vec))
+        self.application.add_handler(CallbackQueryHandler(ai_theme_selector_with_vec,pattern='^[-]?\d*\.?\d+$'))
         
+    def config_survey(self):
+        conv_handler = ConversationHandler(
+            entry_points=[CommandHandler("encuesta",EncuestaCommand.execute)],
+            states={
+                self.ONE_ROUTE: [
+                    CallbackQueryHandler(svh.q2,pattern="^Q1.+$"),
+                    CallbackQueryHandler(svh.q3,pattern="^Q2.+$"),
+                    CallbackQueryHandler(svh.end,pattern="^Q3.+$")
+                ]
+            },fallbacks=[CommandHandler("encuesta",EncuestaCommand.execute)]
+            
+        )
+        self.application.add_handler(conv_handler)        
 
 
 
