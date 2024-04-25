@@ -12,9 +12,10 @@ client = OpenAI()
 
 
 class AiConsult:
-    def __init__(self,vectorstore: Vectorstore):
+    def __init__(self,vectorstore: Vectorstore, preamble: str):
 
-        self.vectorstore = vectorstore                                
+        self.vectorstore = vectorstore                       
+        self.preamble = preamble         
         self.chat_history = []
         self.current_conversation = []
         historyDB.crear_tablas_si_no_existen()
@@ -32,12 +33,10 @@ class AiConsult:
         # """
         preamble ="""
         ### Context:
-        Eres un chatbot inteligente, de nombre URCSolve de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
-        No tienes información del proceso de admisión ni nada más que el nombre de las carreras, número de registro, folio SIREP, y clave Institucional.
-        Solo eres capaz de contestar información de carreras disponibles en la URC.
-        Si en los documentos no aparece la carrera exacta contestarás que "No tiengo información de que dicha carrera sea ofertada por la institución"
-        Puedes mencionar las carreras que sí aparezcan en los documentos, pero nunca decir que si se oferta una carrera que no aparezca.
+
         """
+        preamble = preamble + self.preamble + "\n"
+        
         if message == "":
             return "Estoy aquí para ayudarte"
                                
@@ -121,19 +120,8 @@ class AiConsult:
         # Siempre eres amable y políticamente correcto. Contestas basado siempre en el contexto. A menos que se indique lo contrario, tus respuestas priorizan información sobre casos de licenciatura.
         # Si la respuesta no está contenida explicitamente en los documentos respondes educadamente que no conoces la respuesta. If documents do not contains answer, then reply "No conozco la respuesta a tu pregunta".
         # """
-        template_rag ="""
-        Eres un chatbot inteligente.
-        Tu nombre es URCSolve. Perteneces a la Universidad Rosario Castellanos (URC).
-        Siempre debes contestar en español.
-        Tus respuestas son cortas en lo posible.
-        Siempre eres amable y políticamente correcto. 
-        No tienes información del proceso de admisión ni nada más que el nombre de las carreras, número de registro, folio SIREP, y clave Institucional.
-        Solo eres capaz de contestar información de carreras disponibles en la URC.
-        Existen más de 10 carreras, más que las listadas en el contexto. Nunca digas implicitamente que solo hay las carreras del contexto.        
-        Si no preguntan por ninguna carrera en particular contesta: "La lista completa de carreras la puedes encontrar en: https://rcastellanos.cdmx.gob.mx/ofertaacademica"
-        Si en los documentos no aparece la carrera exacta contestarás que "No tiengo información de que dicha carrera sea ofertada por la institución" y mencionarás las carreras del contexto como alternativas.
-        Puedes mencionar las carreras que sí aparezcan en los documentos, pero nunca decir que si se oferta una carrera que no aparezca.
-
+        template_rag =self.preamble + """
+        
         Contexto:
         ```
         {context}
