@@ -25,5 +25,5 @@ def get_themes(path):
         fragmentar_por_articulo = documentos.fragmentar_contenido()
         
         vectorstore = Vectorstore(fragmentar_por_articulo)
-        themes[dir]=vectorstore
+        themes[dir]={"vectorstore":vectorstore, "preamble":documentos.preamble}
     return themes

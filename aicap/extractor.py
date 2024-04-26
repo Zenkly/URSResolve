@@ -6,18 +6,25 @@ class Extractor:
         self.ruta = ruta
         self.leer_archivos_en_carpeta()
         self.fragmentos = None
+        self.diccionario_archivos = None
+        self.preamble = None
 
 
     def leer_archivos_en_carpeta(self):
         diccionario_archivos = {}
+        diccionario_preambles = {}
         for archivo in os.listdir(self.ruta):
-            if archivo.endswith('.txt'):
+            if archivo.endswith('.txt') or archivo.endswith('.pa'):
                 ruta_completa = os.path.join(self.ruta, archivo)
                 with open(ruta_completa, 'r', encoding='utf-8') as file:
                     contenido = file.read()
                     titulo = os.path.splitext(archivo)[0]  # Obtiene el título sin la extensión
-                    diccionario_archivos[titulo] = contenido
+                    if archivo.endswith('.txt'):
+                        diccionario_archivos[titulo] = contenido            
+                    else:
+                        preamble = contenido
         self.diccionario_archivos = diccionario_archivos
+        self.preamble = preamble
 
     def fragmentar_contenido(self):
         diccionario_fragmentado = {}

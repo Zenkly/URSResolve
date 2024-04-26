@@ -16,7 +16,7 @@ ruta_carpeta = './datatxt/'
 
 # Themes must be defined here to avoid defining it again each time a message is handled
 themes = get_themes(ruta_carpeta)
-print(themes)
+#print(themes)
 
 class MyBot:
     # Constructor
