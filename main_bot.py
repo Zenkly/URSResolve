@@ -82,15 +82,20 @@ class MyBot:
     def config_survey(self):
         # Conversational handler to define sequence
         conv_handler = ConversationHandler(
+            #Commands that have access to routes
             entry_points=[CommandHandler("encuesta",EncuestaCommand.execute),CallbackQueryHandler(svh.q1,pattern='^E-.+$')],
+            #Only one route
             states={
                 self.ONE_ROUTE: [
+                    #Each handler is executed when a callback patterned arrives
                     CallbackQueryHandler(svh.q2,pattern="^Q1.+$"),
                     CallbackQueryHandler(svh.q3,pattern="^Q2.+$"),
                     CallbackQueryHandler(svh.end,pattern="^Q3.+$")
                 ]
             },
+            # If all Handlers returns False, the fallback will be executed
             fallbacks=[CommandHandler("encuesta",EncuestaCommand.execute)],
+            # Each conversation belongs to a user
             per_user=True,
             per_message=False
             
