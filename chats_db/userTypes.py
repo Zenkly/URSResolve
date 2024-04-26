@@ -1,8 +1,6 @@
 import sqlite3
-import json
-from datetime import datetime,timezone
 
-class notificationsDB():
+class userTypesDB():
     def crear_tablas_si_no_existen():
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()
@@ -36,36 +34,44 @@ class notificationsDB():
 
     def toggle_admin(admin,user,value):
         conn = sqlite3.connect('./chats_db/datos.db')
-        cursor = conn.cursor()        
+        cursor = conn.cursor()                
+        if userTypesDB.is_admin(admin):
+            cursor.execute('SELECT user FROM registered_users WHERE user = ?', (user,))
 
-        cursor.execute('SELECT admin FROM registered_users WHERE user = ?', (admin,))
-        if admin:            
-            if int(admin) == 1:
-                cursor.execute('SELECT user FROM registered_users WHERE user = ?', (user,))
-
-                user_data = cursor.fetchone()
-                status = 0
-                if user_data: 
-                    cursor.execute('UPDATE registered_users SET admin = ? WHERE user = ?', (value, user))
-                else:
-                    status = -1
-                conn.commit()
-                conn.close()
+            user_data = cursor.fetchone()
+            status = 0
+            if user_data: 
+                cursor.execute('UPDATE registered_users SET admin = ? WHERE user = ?', (value, user))
             else:
                 status = -5
+            conn.commit()
+            conn.close()
+        else:
+            status = -1
         return status
     
+    def is_admin(user):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()        
+        cursor.execute('SELECT admin FROM registered_users WHERE user = ?', (user,))
+        is_admin = cursor.fetchone()[0]        
+        if is_admin:            
+            if int(is_admin) == 1:
+                return True
+        return False
+  
+    
     def unset_admin(admin,user):
-        return notificationsDB.toggle_admin(admin,user,0)
+        return userTypesDB.toggle_admin(admin,user,0)
 
     def set_admin(admin,user):
-        return notificationsDB.toggle_admin(admin,user,1)
+        return userTypesDB.toggle_admin(admin,user,1)
     
     def unset_notifications(user):
-        return notificationsDB.toggle_notifications(user,0)
+        return userTypesDB.toggle_notifications(user,0)
 
     def set_notifications(user):
-        return notificationsDB.toggle_notifications(user,1)
+        return userTypesDB.toggle_notifications(user,1)
     
     def get_user_data(user):
         conn = sqlite3.connect('./chats_db/datos.db')
@@ -86,12 +92,12 @@ class notificationsDB():
         user_exists = cursor.fetchone()[0] > 0                
         status = 0
         if user_exists:            
-            status = -1
+            pass
         else:
             cursor.execute('INSERT INTO registered_users (user,notifications,admin) VALUES (?, ?, ?)',(user,0,0))            
         conn.commit()
         conn.close()
-        return status
+        return
 
     def delete_user(user):
         conn = sqlite3.connect('./chats_db/datos.db')

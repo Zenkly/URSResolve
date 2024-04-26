@@ -1,6 +1,6 @@
 import sqlite3
-import json
-from datetime import datetime,timezone
+import csv
+
 
 class surveysDB():
     def crear_tablas_si_no_existen():
@@ -50,23 +50,28 @@ class surveysDB():
 
         return status
 
-      
-    def get_user_data(user):
-        conn = sqlite3.connect('./chats_db/datos.db')
-        cursor = conn.cursor()        
-
-        cursor.execute('SELECT notifications,admin FROM registered_users WHERE user = ?', (user,))
-        user_data = cursor.fetchone()
-        if user_data:
-            notifications,admin =user_data
-            return (notifications,admin)
-        else:
-            return -1
-
-    def delete_user(user):
+    def user_answered_survey(user):
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()
-        cursor.execute('DELETE FROM registered_users WHERE user = ?',(user,))
-        conn.commit()
-        conn.close()
+        cursor.execute('SELECT user FROM surveys WHERE user = ?',(user,))
+        user_data = cursor.fetchone()
+        if user_data:
+            return True
+        return False
 
+    def export_to_csv(user):
+        conn = sqlite3.connect('./chats_db/datos.db')
+        cursor = conn.cursor()
+        table = cursor.execute('SELECT * FROM surveys')
+
+        fields = [field[0] for field in table.description]
+
+        with open("./chats_db/surveysTable.csv",'w',newline='') as csv_file:
+            csv_writer = csv.writer(csv_file)
+
+            csv_writer.writerow(fields)
+
+            for row in table.fetchall():
+                csv_writer.writerow(row)
+
+        conn.close()

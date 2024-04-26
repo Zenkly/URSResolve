@@ -8,32 +8,37 @@ import logging
 from functools import partial
 # Get dir names
 from utils.utils import get_themes
-
+# Get survey command
 from survey_handlers.EncuestaCommand import EncuestaCommand
+# Get some survey handlers
 import survey_handlers.surveyHandlers as svh
 
+# Path to txt data
 ruta_carpeta = './datatxt/'
 
 # Themes must be defined here to avoid defining it again each time a message is handled
 themes = get_themes(ruta_carpeta)
-#print(themes)
 
+# Bot class 
 class MyBot:
     # Constructor
     def __init__(self, token):
         self.ONE_ROUTE = 1
         # Build application
         self.application = ApplicationBuilder().token(token).build()
-        # Invoke register_commands method
+        # Register_commands method
         self.register_commands()
+        # Config and set ai capabilities
         self.start_ai_chat()
+        # Config survey process
         self.config_survey()
 
+    # To run bot
     def start(self):
         # Start bot
         self.application.run_polling()
         
-
+    # Register each command in ./commands
     def register_commands(self):
         # Directory where the commands are stored
         command_fies = os.listdir("./commands/")
@@ -58,9 +63,10 @@ class MyBot:
                     self.application.add_handler(CommandHandler(command_name,ai_handler_with_vec))
                 else:
                     # Add command to bot                
-                    self.application.add_handler(CommandHandler(command_name,command_handler))            
+                    self.application.add_handler(CommandHandler(command_name,command_handler))                            
     
-    def start_ai_chat(self):        
+    # Confif ai capabilities
+    def start_ai_chat(self):                
         ai_module = __import__("aicap.AiCap",fromlist=["AiCap"])
         ai_class = getattr(ai_module,"AiCap")
         ai_handler = getattr(ai_class,"execute")
@@ -68,22 +74,28 @@ class MyBot:
         # Handler with vectorstore as aditional argument
         ai_handler_with_vec = partial(ai_handler, themes=themes)
         ai_theme_selector_with_vec = partial(ai_theme_selector, themes=themes)
+        # Add consult and theme selector handlers
         self.application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND) & (~filters.REPLY),ai_handler_with_vec))
-        self.application.add_handler(CallbackQueryHandler(ai_theme_selector_with_vec,pattern='^[-]?\d*\.?\d+$'))
+        self.application.add_handler(CallbackQueryHandler(ai_theme_selector_with_vec,pattern=r'^[-]?\d*\.?\d+$'))
         
+    # Config Survey process
     def config_survey(self):
+        # Conversational handler to define sequence
         conv_handler = ConversationHandler(
-            entry_points=[CommandHandler("encuesta",EncuestaCommand.execute)],
+            entry_points=[CommandHandler("encuesta",EncuestaCommand.execute),CallbackQueryHandler(svh.q1,pattern='^E-.+$')],
             states={
                 self.ONE_ROUTE: [
                     CallbackQueryHandler(svh.q2,pattern="^Q1.+$"),
                     CallbackQueryHandler(svh.q3,pattern="^Q2.+$"),
                     CallbackQueryHandler(svh.end,pattern="^Q3.+$")
                 ]
-            },fallbacks=[CommandHandler("encuesta",EncuestaCommand.execute)]
+            },
+            fallbacks=[CommandHandler("encuesta",EncuestaCommand.execute)],
+            per_user=True,
+            per_message=False
             
         )
-        self.application.add_handler(conv_handler)        
+        self.application.add_handler(conv_handler)          
 
 
 

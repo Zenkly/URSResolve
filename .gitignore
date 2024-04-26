@@ -1,6 +1,7 @@
 secrets
 requirements
 /chats_db/datos.db
+/chats_db/surveys.py
 __pycache__/
 data/
 */__pycache__/

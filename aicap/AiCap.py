@@ -4,42 +4,55 @@ from telegram.ext import ContextTypes
 from telegram.constants import ChatAction
 from aicap.aiconsult import AiConsult
 from chats_db.history import historyDB
+from chats_db.surveys import surveysDB as sdb
 
-class AiCap:    
+# Ai capabilities object
+class AiCap:        
     async def execute(update: Update, context: ContextTypes.DEFAULT_TYPE,themes):
         if (update.effective_chat.type != "private") and (update.effective_chat.type != "group"):
             return
-        historyDB.crear_tablas_si_no_existen()
-        #print(update.message)
+        # Previous Message Database
+        historyDB.crear_tablas_si_no_existen()        
+        # Get theme from previous messages
         theme = historyDB.get_theme(update.message.from_user.id)
+        # If previous theme exist
         if theme:
+            # If previous theme expired
             if theme == "expired":
                 response = "El tema de nuestra conversación ha expirado, elige uno de los siguientes temas:\n"
-                # for key in themes:
-                #     response = response + f"● {key}"
+                # Keyboard of theme buttons
                 keyboard = AiCap.format_options(themes)
+                # Send a message and a formated keyboard 
                 reply_markup = InlineKeyboardMarkup(keyboard)
                 await context.bot.send_message(chat_id=update.effective_chat.id, text=response,reply_markup=reply_markup)
-                # if option:
-                #     print(option)
-                #     AiCap.select_theme(update.message.from_user.id,option.text,themes)
-                
+            # If current topic exists
             else:                            
-                print(theme)
+                # Verify if theme exists in themes array
                 if theme in themes.keys():
+                    # Get theme preamble
                     preamble = themes[theme]["preamble"]
+                    # Create a Consultor with vectortore and preamble by topic
                     consultor = AiConsult(vectorstore=themes[theme]["vectorstore"],preamble=preamble)  
+                # Theme do not exist (maybe deled)
                 else:
                     await context.bot.send_message(chat_id=update.effective_chat.id, text="Lo siento parece que la base ha cambiado. Vuelve a elegir el tema.")
                     historyDB.unset_theme(update.message.from_user.id)
                     return
                 try:
-
+                    # Detect chat type to extract user request
                     if(update.effective_chat.type == "private"):                
                         message = update.message.text
                     elif(update.effective_chat.type == "group"):                            
                         message = update.message.text.replace("/consulta","")
+
+                    #Create a keyboard for change topic and make a satisfaction survey
                     keyboard = [[InlineKeyboardButton("Cambiar tema",callback_data=-1)]]
+
+                    #Add survey button only id user didn't answer the survey previously
+                    if sdb.user_answered_survey(update.message.from_user.id):
+                        id = update.message.from_user.id
+                        keyboard.append([InlineKeyboardButton("Ayudanos con una encuesta 🗳",callback_data="E-"+str(id))])
+
                     reply_markup = InlineKeyboardMarkup(keyboard)
                     response = consultor.consultOpenAi(update.message.from_user.id,message)
                     await context.bot.send_chat_action(chat_id=update.effective_chat.id,action=ChatAction.TYPING)
