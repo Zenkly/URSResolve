@@ -1,5 +1,6 @@
 import cohere
-from aicap.vectorstore import Vectorstore
+#from aicap.vectorstore import Vectorstore
+from aicap.alt_vectorstore import Vectorstore
 from chats_db.history import historyDB
 from openai import OpenAI
 import os
@@ -37,6 +38,9 @@ class AiConsult:
         """
         preamble = preamble + self.preamble + "\n"
         
+        print("preamble:")
+        print(preamble)
+
         if message == "":
             return "Estoy aquí para ayudarte"
                                

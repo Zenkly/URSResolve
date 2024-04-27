@@ -2,7 +2,8 @@ import os
 # Extract information from txt files
 from aicap.extractor import Extractor
 # Create Vectorstore
-from aicap.vectorstore import Vectorstore
+#from aicap.vectorstore import Vectorstore
+from aicap.alt_vectorstore import Vectorstore
 
 def get_dir_names(path):
     # Varify if path is directory
