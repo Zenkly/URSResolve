@@ -1,10 +1,10 @@
-import hnswlib
 from typing import List, Dict
 #Vectorstore database
 import chromadb
-import os
+from chromadb.utils import embedding_functions
 
 co = chromadb.Client()
+sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="intfloat/e5-mistral-7b-instruct")
 
 class Vectorstore:
     def __init__(self,raw_documents: List[str]):
