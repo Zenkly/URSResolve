@@ -48,11 +48,12 @@ class Vectorstore:
         # )
 
         # docs_ids_reranked = [doc_ids[result.index] for result in rerank_results.results]
-
+        # 
         docs_retrieved=[]
-        print(query_emb)
-        print(len(query_emb["ids"][0]))
+        #print(query_emb)
+        #print(len(query_emb["ids"][0]))
         for i in range(len(query_emb["ids"][0])):
+            #print(query_emb['metadatas'][0][i]["titulo"],query_emb['metadatas'][0][i]["seccion"])
             docs_retrieved.append(
                 {             
                     "titulo": query_emb['metadatas'][0][i]["titulo"],
@@ -60,5 +61,5 @@ class Vectorstore:
                     "contenido":query_emb['documents'][0][i]
                 }
             )
-        print(docs_retrieved)
+        #print(docs_retrieved)
         return docs_retrieved

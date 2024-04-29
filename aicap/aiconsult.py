@@ -1,6 +1,6 @@
 import cohere
-#from aicap.vectorstore import Vectorstore
-from aicap.alt_vectorstore import Vectorstore
+from aicap.vectorstore import Vectorstore
+#from aicap.alt_vectorstore import Vectorstore
 from chats_db.history import historyDB
 from openai import OpenAI
 import os
@@ -22,7 +22,7 @@ class AiConsult:
         historyDB.crear_tablas_si_no_existen()
 
           
-    
+    # ASKING TO COHERE
     def consult(self,user,input_message):        
         self.chat_history=historyDB.obtener_historial(user)
         message = input_message
@@ -38,8 +38,8 @@ class AiConsult:
         """
         preamble = preamble + self.preamble + "\n"
         
-        print("preamble:")
-        print(preamble)
+        #print("preamble:")
+        #print(preamble)
 
         if message == "":
             return "Estoy aquí para ayudarte"
@@ -101,6 +101,7 @@ class AiConsult:
         #print(answer, end="")
         return answer
     
+    #ASKING TO OPENAI
     def query_OpenAillm(system_message,prompt, history,model="gpt-3.5-turbo"):
         #print("Querying...")
         history.insert(0,{"role": "system", "content": system_message})
@@ -118,18 +119,15 @@ class AiConsult:
     def consultOpenAi(self,user,input_message):        
         self.chat_history=historyDB.obtener_historial(user,openAi=True)
         message = input_message
-        # preamble ="""
-        # ### Context
-        # Eres un chatbot inteligente, de nombre URCSolve de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
-        # Siempre eres amable y políticamente correcto. Contestas basado siempre en el contexto. A menos que se indique lo contrario, tus respuestas priorizan información sobre casos de licenciatura.
-        # Si la respuesta no está contenida explicitamente en los documentos respondes educadamente que no conoces la respuesta. If documents do not contains answer, then reply "No conozco la respuesta a tu pregunta".
-        # """
         template_rag =self.preamble + """
         
         Contexto:
         ```
         {context}
         ```
+        
+        No inventes el significado de Siglas.
+        Solo debes basar tu respuesta en el contexto.
         """
         if message == "":
             return "Estoy aquí para ayudarte"
