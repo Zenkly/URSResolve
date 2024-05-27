@@ -1,7 +1,7 @@
-![Logo de UrcSolve](https://github.com/Zenkly/URSResolve/blob/main/Logo-bgr.png)
-# UrcSolve Bot
+![Logo de Castell](https://github.com/Zenkly/URSResolve/blob/main/Logo-bgr.png)
+# Castell Bot
 
-UrcSolve is a Telegram bot designed for Universidad Rosario Castellanos that offers functionalities to solve queries, perform natural language queries in group chats, initiate satisfaction surveys, provide useful university links, and manage administrators.
+Castell is a Telegram bot designed for Universidad Rosario Castellanos that offers functionalities to solve queries, perform natural language queries in group chats, initiate satisfaction surveys, provide useful university links, and manage administrators.
 
 ## Features
 

@@ -28,7 +28,7 @@ class AiConsult:
         message = input_message
         # preamble ="""
         # ### Context
-        # Eres un chatbot inteligente, de nombre URCSolve de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
+        # Eres un chatbot inteligente, de nombre Castell de la Universidad Rosario Castellanos (URC). Siempre debes contestar en español.
         # Siempre eres amable y políticamente correcto. Contestas basado siempre en el contexto. A menos que se indique lo contrario, tus respuestas priorizan información sobre casos de licenciatura.
         # Si la respuesta no está contenida explicitamente en los documentos respondes educadamente que no conoces la respuesta. If documents do not contains answer, then reply "No conozco la respuesta a tu pregunta".
         # """
@@ -108,11 +108,13 @@ class AiConsult:
         history.append({"role": "user", "content": prompt})
         #print(history)
         completions = client.chat.completions.create(        
-        model="gpt-3.5-turbo",
+        model=model,
             messages=history,
             temperature=0.0,
         )
-        #print("Finish...")
+        print("History...")
+        print(history)
+        print()
         #print(completions.choices[0].message.content)
         return completions.choices[0].message.content
 
@@ -127,7 +129,7 @@ class AiConsult:
         ```
         
         No inventes el significado de Siglas.
-        Solo debes basar tu respuesta en el contexto.
+        Solo debes basar tu respuesta en el contexto o respuestas previas del rol assistant.
         """
         if message == "":
             return "Estoy aquí para ayudarte"
@@ -145,7 +147,9 @@ class AiConsult:
         for doc in documents:
             context_n = doc["titulo"] +": " + doc["seccion"] +": " +doc["contenido"]
             context = context + "\n" + context_n
+            print("Docs...")
             print(doc)
+            print()
         
 
         final_prompt = template_rag.format(context=context)
