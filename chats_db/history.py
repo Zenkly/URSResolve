@@ -40,7 +40,7 @@ class historyDB():
             print(time)
             time_diff = now - time
             print(time_diff)
-            if time_diff > 300:
+            if time_diff > 600:
                 cursor.execute('DELETE FROM chat_theme WHERE user = ?',(user,))
                 print("Debes definir un nuevo tema")
                 theme = "expired"

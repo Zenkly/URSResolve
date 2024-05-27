@@ -84,7 +84,7 @@ class AiCap:
                 if (option_number>=0) and (option_number < len(themes_list)):
                     theme = themes_list[option_number]                    
                     historyDB.set_theme(query.from_user.id,theme)
-                    await query.edit_message_text(text=f"De acuerdo cuéntame tus dudas de {themes_list[option_number]}")
+                    await query.edit_message_text(text=f"(* ˘⌣˘)◞ ¡Gracias!. Estoy listo ahora puedes escribirme tus dudas de {themes_list[option_number]}")
                 if option_number==-1:
                     print("Cambiando tema")
                     historyDB.unset_theme(query.from_user.id)
