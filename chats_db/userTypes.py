@@ -54,8 +54,9 @@ class userTypesDB():
         conn = sqlite3.connect('./chats_db/datos.db')
         cursor = conn.cursor()        
         cursor.execute('SELECT admin FROM registered_users WHERE user = ?', (user,))
-        is_admin = cursor.fetchone()[0]        
-        if is_admin:            
+        res=cursor.fetchone()
+        if res:            
+            is_admin = cursor.fetchone()[0]        
             if int(is_admin) == 1:
                 return True
         return False

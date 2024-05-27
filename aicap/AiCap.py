@@ -9,6 +9,7 @@ from chats_db.surveys import surveysDB as sdb
 # Ai capabilities object
 class AiCap:        
     async def execute(update: Update, context: ContextTypes.DEFAULT_TYPE,themes):
+        sdb.crear_tablas_si_no_existen()
         if (update.effective_chat.type != "private") and (update.effective_chat.type != "group"):
             return
         # Previous Message Database
