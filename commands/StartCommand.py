@@ -11,7 +11,6 @@ Aquí tienes acceso a información relevante sobre nuestra universidad.
 
 Podemos ayudarte con información de procedimientos acerca de:
 
-- Proceso de admisión.
 - Proceso de titulación.
 - Requisitos y procedimientos del servicio social.
 - Oferta académica.

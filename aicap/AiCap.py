@@ -49,10 +49,14 @@ class AiCap:
                     #Create a keyboard for change topic and make a satisfaction survey
                     keyboard = [[InlineKeyboardButton("Cambiar tema",callback_data=-1)]]
 
-                    #Add survey button only id user didn't answer the survey previously
-                    if sdb.user_answered_survey(update.message.from_user.id):
+                    # #Add survey button only id user didn't answer the survey previously
+                    if not sdb.user_answered_survey(update.message.from_user.id):
                         id = update.message.from_user.id
                         keyboard.append([InlineKeyboardButton("Ayudanos con una encuesta 🗳",callback_data="E-"+str(id))])
+                    
+                    # print(sdb.user_answered_survey(update.message.from_user.id))
+                    # id = update.message.from_user.id
+                    # keyboard.append([InlineKeyboardButton("Ayudanos con una encuesta 🗳",callback_data="E-"+str(id))])
 
                     reply_markup = InlineKeyboardMarkup(keyboard)
                     response = consultor.consultOpenAi(update.message.from_user.id,message)
@@ -90,6 +94,7 @@ class AiCap:
                     print("Cambiando tema")
                     historyDB.unset_theme(query.from_user.id)
                     await context.bot.send_message(query.message.chat.id,text=f"Fue un placer ayudarte. Envía otro mensaje para iniciar otra conversación.")
+                    
             
 
     def format_options(themes):
