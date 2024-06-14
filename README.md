@@ -25,6 +25,47 @@ Castell is a Telegram bot designed by students for Universidad Rosario Castellan
 
 The bot is developed in Python using the `python-telegram-bot` library and integrates with the APIs of OpenAI and COHERE for natural language query resolution.
 
+## Instalation
+
+Both enviromente.yml for conda and requirements.txt for pip are provided. For conda:
+
+1. Clone the project repository from GitHub to your local machine:
+
+```
+git clone https://github.com/Zenkly/URSResolve.git
+```
+
+2. Navigate to the cloned project directory:
+
+```
+cd project
+```
+
+3.
+
+```
+
+```
+
+4.
+
+```
+
+```
+
+5.
+
+```
+
+```
+
+6.
+
+```
+mkdir castell
+conda env create -f environment.yml
+```
+
 ## Execution
 
 To run the bot, use the following command:
