@@ -47,23 +47,18 @@ cd URSResolve
 conda env create -f environment.yml
 ```
 
-4.
+4. Activate the new Conda environment:
 
 ```
-
+conda activate castell
 ```
 
-5.
+5. Set the required environment variables:
 
 ```
-
-```
-
-6.
-
-```
-mkdir castell
-conda env create -f environment.yml
+conda env config vars set COHERE_TOKEN=your_cohere_token
+conda env config vars set BOT_TOKEN=your_telegram_bot_token
+conda env config vars set OPENAI_API_KEY=your_openai_api_key
 ```
 
 ## Execution
