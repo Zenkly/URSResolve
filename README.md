@@ -38,13 +38,13 @@ git clone https://github.com/Zenkly/URSResolve.git
 2. Navigate to the cloned project directory:
 
 ```
-cd project
+cd URSResolve
 ```
 
-3.
+3. Create a new Conda environment from the environment.yml file:
 
 ```
-
+conda env create -f environment.yml
 ```
 
 4.
