@@ -1,7 +1,8 @@
-![Logo de Castell](https://github.com/Zenkly/URSResolve/blob/main/Logo-bgr.png)
+![Logo de Castell](https://github.com/Zenkly/URSResolve/blob/main/Castell.png)
+
 # Castell Bot
 
-Castell is a Telegram bot designed for Universidad Rosario Castellanos that offers functionalities to solve queries, perform natural language queries in group chats, initiate satisfaction surveys, provide useful university links, and manage administrators.
+Castell is a Telegram bot designed by students for Universidad Rosario Castellanos that offers functionalities to solve queries, perform natural language queries in group chats, initiate satisfaction surveys, provide useful university links, and manage administrators.
 
 ## Features
 
@@ -25,7 +26,9 @@ Castell is a Telegram bot designed for Universidad Rosario Castellanos that offe
 The bot is developed in Python using the `python-telegram-bot` library and integrates with the APIs of OpenAI and COHERE for natural language query resolution.
 
 ## Execution
+
 To run the bot, use the following command:
+
 ```
 python main_bot.py
 ```
