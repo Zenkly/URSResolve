@@ -1,4 +1,4 @@
-![Logo de Castell](https://github.com/Zenkly/URSResolve/blob/main/Castell.jpg)
+![Logo de Castell](https://github.com/Zenkly/URSResolve/blob/main/Castell.png)
 
 # Castell Bot
 
